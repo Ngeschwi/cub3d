@@ -6,7 +6,7 @@
 #    By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 16:55:28 by ngeschwi          #+#    #+#              #
-#    Updated: 2022/06/06 09:37:52 by ngeschwi         ###   ########.fr        #
+#    Updated: 2022/06/07 13:57:43 by ngeschwi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRCS	= main.c \
 			src/error/ft_error_exit.c \
 			src/gnl/get_next_line.c \
 			src/gnl/get_next_line_utils.c \
-			src/parse/ft_parse_map.c
+			src/parse/ft_parse_map.c \
+			src/parse/ft_parse_map2.c
 
 OBJS	= $(SRCS:.c=.o)
 

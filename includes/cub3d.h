@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 16:56:57 by ngeschwi          #+#    #+#             */
-/*   Updated: 2022/06/07 13:21:20 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2022/06/07 14:56:29 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <stdbool.h>
 # include "mlx.h"
 # include "get_next_line.h"
 
@@ -35,6 +36,7 @@ typedef struct	s_map
 	char	*east_texture;
 	char	*floor_texture;
 	char	*ceiling_texture;
+	int		get_all_element;
 }				t_map;
 
 void	ft_putstr(char *str);
@@ -43,6 +45,7 @@ int		ft_strlen(const char *str);
 
 void	ft_error_exit(char *error, t_map *map);
 
-void	ft_parse_map(char *path_map);
+void	ft_parse_map(t_map *map, char *path_map);
+void	get_element(t_map *map);
 
 #endif
