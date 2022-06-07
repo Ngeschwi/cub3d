@@ -6,15 +6,19 @@
 #    By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 16:55:28 by ngeschwi          #+#    #+#              #
-#    Updated: 2022/06/01 18:17:30 by ngeschwi         ###   ########.fr        #
+#    Updated: 2022/06/06 09:37:52 by ngeschwi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	= main.c \
-			src/basic_functions/ft_strlen.c \
-			src/basic_functions/ft_strdup.c \
+			src/basic_function/ft_putstr.c \
+			src/basic_function/ft_strdup.c \
+			src/basic_function/ft_strlen.c \
+			src/basic_function/ft_substr.c \
+			src/basic_function/ft_strjoin.c \
 			src/error/ft_error_exit.c \
 			src/gnl/get_next_line.c \
+			src/gnl/get_next_line_utils.c \
 			src/parse/ft_parse_map.c
 
 OBJS	= $(SRCS:.c=.o)
@@ -37,7 +41,7 @@ $(NAME):	${MLX} $(OBJS)
 		${CC} ${CFLAGS} $(OBJS) ${LINK} ${LIBS} -o $(NAME)
 
 $(MLX) :
-		${MAKE} -C minilibX
+		$(MAKE) -C minilibX
 		@cp minilibX/$(MLX) .
 
 $(OBJS):	includes/get_next_line.h includes/cub3d.h minilibX/mlx.h

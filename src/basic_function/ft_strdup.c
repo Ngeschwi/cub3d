@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error_exit.c                                    :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 18:20:01 by ngeschwi          #+#    #+#             */
-/*   Updated: 2022/06/07 13:15:19 by ngeschwi         ###   ########.fr       */
+/*   Created: 2022/06/05 11:23:03 by ngeschwi          #+#    #+#             */
+/*   Updated: 2022/06/05 16:22:20 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	ft_free(t_map *map)
+char	*ft_strdup(const char *str)
 {
-	int	i;
+	int		i;
+	char	*dst;
 
-	i = 0;
-	if (map->tab != NULL)
+	if (str == NULL)
 	{
-		while (map->tab[i])
-		{
-			free(map->tab[i]);
-			i++;
-		}
+		dst = malloc(sizeof(char) * 1);
+		dst[0] = '\0';
+		return (dst);
 	}
-}
-
-void	ft_error_exit(char *error, t_map *map)
-{
-	perror(error);
-	ft_free(map);
-	exit(0);
+	dst = malloc(sizeof(char) * (ft_strlen_gnl(str) + 1));
+	if (!dst)
+		return (NULL);
+	i = 0;
+	while (str[i])
+	{
+		dst[i] = str[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
 }

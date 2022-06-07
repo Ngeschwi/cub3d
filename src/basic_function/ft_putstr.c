@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error_exit.c                                    :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 18:20:01 by ngeschwi          #+#    #+#             */
-/*   Updated: 2022/06/07 13:15:19 by ngeschwi         ###   ########.fr       */
+/*   Created: 2022/06/05 11:22:47 by ngeschwi          #+#    #+#             */
+/*   Updated: 2022/06/05 11:24:41 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	ft_free(t_map *map)
+void	ft_putstr(char *str)
 {
 	int	i;
 
 	i = 0;
-	if (map->tab != NULL)
+	while (str[i])
 	{
-		while (map->tab[i])
-		{
-			free(map->tab[i]);
-			i++;
-		}
+		write(1, str + i, 1);
+		i++;
 	}
-}
-
-void	ft_error_exit(char *error, t_map *map)
-{
-	perror(error);
-	ft_free(map);
-	exit(0);
 }

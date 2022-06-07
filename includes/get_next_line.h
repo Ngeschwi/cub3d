@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
+/*   By: ngeschwi <ngeschwi@stutent.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 18:19:35 by ngeschwi          #+#    #+#             */
-/*   Updated: 2022/06/01 18:19:35 by ngeschwi         ###   ########.fr       */
+/*   Created: 2021/04/06 15:14:05 by ngeschwi          #+#    #+#             */
+/*   Updated: 2021/04/06 15:14:05 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,17 @@
 # include <string.h>
 # include <fcntl.h>
 # include <sys/stat.h>
-# include "cub3d.h"
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
+#  define BUFFER_SIZE 42
 # endif
 
 # define NO_NL -1
 
 int			get_next_line(int fd, char **line);
+size_t		ft_strlen_gnl(const char *s);
+char		*ft_substr(char const *s, int start, int len);
+char		*ft_strjoin(char **str, char *buff);
+void		ft_free_if_define(char **str);
 
 #endif
