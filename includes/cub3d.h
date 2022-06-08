@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 16:56:57 by ngeschwi          #+#    #+#             */
-/*   Updated: 2022/06/08 12:37:58 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:33:52 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	ft_error_exit(char *error, t_map *map);
 void	ft_parse_map(t_map *map, char *path_map);
 void	get_element(t_map *map);
 void	check_element_in_map(t_map *map);
+void	delete_element_to_keep_map(t_map *map);
 
 void	ft_lunch_game(t_map *map);
 

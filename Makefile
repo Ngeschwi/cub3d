@@ -6,7 +6,7 @@
 #    By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 16:55:28 by ngeschwi          #+#    #+#              #
-#    Updated: 2022/06/08 12:37:38 by ngeschwi         ###   ########.fr        #
+#    Updated: 2022/06/08 15:21:58 by ngeschwi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS	= main.c \
 			src/parse/ft_parse_map.c \
 			src/parse/ft_parse_map2.c \
 			src/parse/ft_parse_map3.c \
+			src/parse/ft_parse_map4.c \
 			src/game/ft_lunch_game.c
 
 OBJS	= $(SRCS:.c=.o)

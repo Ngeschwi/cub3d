@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:19:08 by ngeschwi          #+#    #+#             */
-/*   Updated: 2022/06/08 12:06:46 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:33:52 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,5 @@ void	ft_parse_map(t_map *map, char *path_map)
 	get_map(map);
 	get_element(map);
 	check_element_in_map(map);
+	delete_element_to_keep_map(map);
 }

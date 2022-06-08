@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 11:19:28 by ngeschwi          #+#    #+#             */
-/*   Updated: 2022/06/08 12:33:12 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:33:52 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static void	check_if_map_is_close(t_map *map)
 		{
 			if (map->tab[idx_tab][idx_line] == '0')
 			{
+				if (idx_line == 0)
+					ft_error_exit("Error : invalid map : the map is open\n", map);
 				check_line_around_zero(map, idx_tab - 1, idx_line - 1);
 				check_line_around_zero(map, idx_tab, idx_line - 1);
 				check_line_around_zero(map, idx_tab + 1, idx_line - 1);
