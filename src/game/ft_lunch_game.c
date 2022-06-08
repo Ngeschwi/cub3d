@@ -1,39 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error_exit.c                                    :+:      :+:    :+:   */
+/*   ft_lunch_game.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 18:20:01 by ngeschwi          #+#    #+#             */
-/*   Updated: 2022/06/08 11:21:07 by ngeschwi         ###   ########.fr       */
+/*   Created: 2022/06/08 12:36:45 by ngeschwi          #+#    #+#             */
+/*   Updated: 2022/06/08 12:38:19 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	ft_free(t_map *map)
+void	ft_lunch_game(t_map *map)
 {
-	int	i;
-
-	i = 0;
-	if (map->line != NULL)
-		free(map->line);
-	if (map->tab != NULL)
-	{
-		while (map->tab[i])
-		{
-			free(map->tab[i]);
-			i++;
-		}
-		free(map->tab);
-	}
-	close(map->fd);
-}
-
-void	ft_error_exit(char *error, t_map *map)
-{
-	printf("%s", error);
-	ft_free(map);
-	exit(0);
+	(void)map;
 }

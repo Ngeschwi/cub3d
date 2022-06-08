@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 16:56:57 by ngeschwi          #+#    #+#             */
-/*   Updated: 2022/06/07 14:56:29 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2022/06/08 12:37:58 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ typedef struct	s_map
 {
 	int		fd;
 	int		nbr_line;
+	int		first_line_of_map;
+	char	orientation_of_carac;
+	int		carac_x;
+	int		carac_y;
 	char	*line;
 	char	**tab;
 	char	*nord_texture;
@@ -35,7 +39,7 @@ typedef struct	s_map
 	char	*west_texture;
 	char	*east_texture;
 	char	*floor_texture;
-	char	*ceiling_texture;
+	char	*ceil_texture;
 	int		get_all_element;
 }				t_map;
 
@@ -47,5 +51,8 @@ void	ft_error_exit(char *error, t_map *map);
 
 void	ft_parse_map(t_map *map, char *path_map);
 void	get_element(t_map *map);
+void	check_element_in_map(t_map *map);
+
+void	ft_lunch_game(t_map *map);
 
 #endif

@@ -6,60 +6,79 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 13:57:20 by ngeschwi          #+#    #+#             */
-/*   Updated: 2022/06/07 15:25:22 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2022/06/08 12:34:14 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	stock_path_element(t_map *map, char **texture, int idx_tab, int idx_line)
+static void	get_first_line_of_map(t_map *map, int idx_tab)
 {
-	int	size_texture;
-	int	idx_texture;
-	int	idx_save;
+	int	idx_line;
+
+	while (map->tab[idx_tab])
+	{
+		idx_line = 0;
+		while (map->tab[idx_tab][idx_line]
+			&& map->tab[idx_tab][idx_line] == ' ')
+			idx_line++;
+		if (map->tab[idx_tab][idx_line] != '\0')
+		{
+			map->first_line_of_map = idx_tab;
+			return ;
+		}
+		idx_tab++;
+	}
+}
+
+static char	*stock_path_element(t_map *map, int idx_tab, int idx_line)
+{
+	int		size_texture;
+	int		idx_texture;
+	int		idx_save;
+	char	*texture;
 
 	size_texture = 0;
 	idx_texture = 0;
 	while (map->tab[idx_tab][idx_line] == ' ')
 		idx_line++;
 	idx_save = idx_line;
-	while (map->tab[idx_tab][idx_line] && map->tab[idx_tab][idx_line] != ' ')
-	{
+	while (map->tab[idx_tab][idx_line++])
 		size_texture++;
-		idx_line++;
-	}
 	idx_line = idx_save;
-	*texture = malloc(sizeof(char) * (size_texture + 1));
-	if (!*texture)
+	texture = malloc(sizeof(char) * (size_texture + 1));
+	if (!texture)
 		ft_error_exit("Error : malloc initialisation\n", map);
-	printf("%d\n", size_texture);
-	while (map->tab[idx_tab][idx_line] && map->tab[idx_tab][idx_line] != ' ')
+	while (map->tab[idx_tab][idx_line])
 	{
-		printf("%d et %d\n", idx_texture, idx_line);
-		printf("%c\n", map->tab[idx_tab][idx_line]);
-		*texture[idx_texture] = map->tab[idx_tab][idx_line];
+		texture[idx_texture] = map->tab[idx_tab][idx_line];
 		idx_texture++;
 		idx_line++;
 	}
-	*(texture[idx_texture]) = '\0';
+	texture[idx_texture] = '\0';
+	return (texture);
 }
 
 static void	check_which_element(t_map *map, int idx_tab, int idx_line)
 {
 	if (map->tab[idx_tab][idx_line + 1])
 	{
-		if (map->tab[idx_tab][idx_line] == 'N' && map->tab[idx_tab][idx_line + 1] == 'O')
-			stock_path_element(map, &map->nord_texture, idx_tab, idx_line + 2);
-		else if (map->tab[idx_tab][idx_line] == 'S' && map->tab[idx_tab][idx_line + 1] == 'O')
-			stock_path_element(map, &map->south_texture, idx_tab, idx_line + 2);
-		else if (map->tab[idx_tab][idx_line] == 'W' && map->tab[idx_tab][idx_line + 1] == 'E')
-			stock_path_element(map, &map->west_texture, idx_tab, idx_line + 2);
-		else if (map->tab[idx_tab][idx_line] == 'E' && map->tab[idx_tab][idx_line + 1] == 'A')
-			stock_path_element(map, &map->east_texture, idx_tab, idx_line + 2);
+		if (map->tab[idx_tab][idx_line] == 'N'
+			&& map->tab[idx_tab][idx_line + 1] == 'O')
+			map->nord_texture = stock_path_element(map, idx_tab, idx_line + 2);
+		else if (map->tab[idx_tab][idx_line] == 'S'
+			&& map->tab[idx_tab][idx_line + 1] == 'O')
+			map->south_texture = stock_path_element(map, idx_tab, idx_line + 2);
+		else if (map->tab[idx_tab][idx_line] == 'W'
+			&& map->tab[idx_tab][idx_line + 1] == 'E')
+			map->west_texture = stock_path_element(map, idx_tab, idx_line + 2);
+		else if (map->tab[idx_tab][idx_line] == 'E'
+			&& map->tab[idx_tab][idx_line + 1] == 'A')
+			map->east_texture = stock_path_element(map, idx_tab, idx_line + 2);
 		else if (map->tab[idx_tab][idx_line] == 'F')
-			stock_path_element(map, &map->floor_texture, idx_tab, idx_line + 1);
+			map->floor_texture = stock_path_element(map, idx_tab, idx_line + 1);
 		else if (map->tab[idx_tab][idx_line] == 'C')
-			stock_path_element(map, &map->ceiling_texture, idx_tab, idx_line + 1);
+			map->ceil_texture = stock_path_element(map, idx_tab, idx_line + 1);
 		else
 			ft_error_exit("Error : texture's map invalid\n", map);
 		map->get_all_element++;
@@ -72,28 +91,19 @@ void	get_element(t_map *map)
 	int	idx_line;
 
 	idx_tab = 0;
-	idx_line = 0;
 	while (map->tab[idx_tab])
 	{
-		while (map->tab[idx_tab][idx_line] && map->tab[idx_tab][idx_line] == ' ')
+		idx_line = 0;
+		while (map->tab[idx_tab][idx_line]
+			&& map->tab[idx_tab][idx_line] == ' ')
 			idx_line++;
-		if (map->tab[idx_tab][idx_line] == '\0')
-		{
-			idx_line = 0;
-			idx_tab++;
-		}
-		else
+		if (map->tab[idx_tab][idx_line] != '\0')
 			check_which_element(map, idx_tab, idx_line);
-		if (map->get_all_element == 5)
-			break;
 		idx_tab++;
+		if (map->get_all_element == 6)
+			break ;
 	}
-	if (map->get_all_element < 5)
+	if (map->get_all_element < 6)
 		ft_error_exit("Error : there aren't all element in the map file\n", map);
-	// printf("%s\n", map->nord_texture);
-	// printf("%s\n", map->south_texture);
-	// printf("%s\n", map->west_texture);
-	// printf("%s\n", map->east_texture);
-	// printf("%s\n", map->ceiling_texture);
-	// printf("%s\n", map->floor_texture);
+	get_first_line_of_map(map, idx_tab);
 }

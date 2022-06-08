@@ -6,50 +6,50 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:19:08 by ngeschwi          #+#    #+#             */
-/*   Updated: 2022/06/07 15:19:12 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2022/06/08 12:06:46 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "get_next_line.h"
 
-static int	get_size_line(t_map *map, int index_line)
+static int	get_size_line(t_map *map, int idx_line)
 {
 	int	size;
 
 	size = 0;
-	while (map->line[index_line] && map->line[index_line] != '\n')
+	while (map->line[idx_line] && map->line[idx_line] != '\n')
 	{
 		size++;
-		index_line++;
+		idx_line++;
 	}
 	return (size);
 }
 
 static void	get_map(t_map *map)
 {
-	int	index_line;
-	int	index_tab;
-	int	index_save;
+	int	idx_line;
+	int	idx_tab;
+	int	idx_save;
 	int	j;
 	int	size;
 
-	index_line = 0;
+	idx_line = 0;
 	j = 0;
-	while (map->line[index_line])
+	while (map->line[idx_line])
 	{
-		index_save = index_line;
-		size = get_size_line(map, index_line);
+		idx_save = idx_line;
+		size = get_size_line(map, idx_line);
 		map->tab[j] = malloc(sizeof(char) * (size + 1));
-		index_tab = 0;
-		index_line = index_save;
-		while (map->line[index_line] && map->line[index_line] != '\n')
+		idx_tab = 0;
+		idx_line = idx_save;
+		while (map->line[idx_line] && map->line[idx_line] != '\n')
 		{
-			map->tab[j][index_tab++] = map->line[index_line];
-			index_line++;
+			map->tab[j][idx_tab++] = map->line[idx_line];
+			idx_line++;
 		}
-		map->tab[j][index_tab] = '\0';
-		index_line++;
+		map->tab[j][idx_tab] = '\0';
+		idx_line++;
 		j++;
 	}
 	map->tab[j] = NULL;
@@ -86,6 +86,8 @@ static void	ft_init_map(t_map *map)
 {
 	map->fd = 0;
 	map->nbr_line = 0;
+	map->first_line_of_map = 0;
+	map->orientation_of_carac = 0;
 	map->line = NULL;
 	map->tab = NULL;
 	map->nord_texture = NULL;
@@ -93,7 +95,7 @@ static void	ft_init_map(t_map *map)
 	map->west_texture = NULL;
 	map->east_texture = NULL;
 	map->floor_texture = NULL;
-	map->ceiling_texture = NULL;
+	map->ceil_texture = NULL;
 	map->get_all_element = 0;
 }
 
@@ -103,4 +105,5 @@ void	ft_parse_map(t_map *map, char *path_map)
 	get_nbr_line_of_map(map, path_map);
 	get_map(map);
 	get_element(map);
+	check_element_in_map(map);
 }

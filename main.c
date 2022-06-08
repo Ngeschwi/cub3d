@@ -6,7 +6,7 @@
 /*   By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:19:13 by ngeschwi          #+#    #+#             */
-/*   Updated: 2022/06/07 15:18:58 by ngeschwi         ###   ########.fr       */
+/*   Updated: 2022/06/08 12:35:41 by ngeschwi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int main(int argc, char **argv)
 	else
 	{
 		ft_parse_map(&map, argv[1]);
+		ft_lunch_game(&map);
 	}
 	return (EXIT_SUCCESS);
 }

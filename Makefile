@@ -6,7 +6,7 @@
 #    By: ngeschwi <nathan.geschwind@gmail.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 16:55:28 by ngeschwi          #+#    #+#              #
-#    Updated: 2022/06/07 13:57:43 by ngeschwi         ###   ########.fr        #
+#    Updated: 2022/06/08 12:37:38 by ngeschwi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ SRCS	= main.c \
 			src/gnl/get_next_line.c \
 			src/gnl/get_next_line_utils.c \
 			src/parse/ft_parse_map.c \
-			src/parse/ft_parse_map2.c
+			src/parse/ft_parse_map2.c \
+			src/parse/ft_parse_map3.c \
+			src/game/ft_lunch_game.c
 
 OBJS	= $(SRCS:.c=.o)
 
@@ -28,7 +30,7 @@ NAME	= cub3d
 
 CC		= gcc
 RM		= rm -rf
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra -fsanitize=address -g3
 LIBS	= -LminilibX -lmlx -framework OpenGL -framework AppKit -lm
 MLX		= libmlx.dylib
 LINK	= -Iincludes -IminilibX
